@@ -44,6 +44,7 @@ class Block extends Component{
         return (
             <div>
                 <div>Data: {dataDisplay}</div>
+                <br />
                 <Button
                     bsStyle="danger"
                     bsSize="small"
@@ -62,6 +63,7 @@ class Block extends Component{
 
         return (
             <div className='Block'>
+
                 <div>Hash: {hashDisplay}</div>
                 <div>Timestamp: {new Date(timeStamp).toLocaleDateString()}</div>
                 {this.displayTransaction}

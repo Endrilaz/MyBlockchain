@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Navbar, Nav, Card, Button, Image, Row, Col, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Block from './Block';
+import logo from '../assets/blue.jpg';
 
 class Blocks extends Component {
     state = { blocks: [], paginatedId: 1, blocksLength: 0 };
@@ -24,9 +25,35 @@ class Blocks extends Component {
         console.log('this.state', this.state);
 
         return (
+
             <div>
-                <div><Link to='/'>Home</Link></div>
+
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar.Brand href="/">
+                    <img
+                        src={logo}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                        alt="React Bootstrap logo"
+                    />{' '}
+                    ZIMABLUE<strong>.</strong>
+                    </Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse className="justify-content-end">
+                    <Nav>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/blocks">Blocks</Nav.Link>
+                    <Nav.Link href="/conduct-transaction">Make a Transaction</Nav.Link>
+                    <Nav.Link href="/transaction-pool">Pool</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
+
+                <div className='zimablue-line-full'></div>
+
                 <h3>Blocks</h3>
+                <br />
                 <div>
                     {
                         [...Array(Math.ceil(this.state.blocksLength/5)).keys()].map(key => {
@@ -42,10 +69,20 @@ class Blocks extends Component {
                         })
                     }
                 </div>
+                <br />
                 {
                     this.state.blocks.map(block => {
                         return (
-                            <Block key={block.hash} block={block} />
+
+                            <Container>
+                                <Row>
+                                    <Col md={{ span: 6, offset: 3 }}>
+                                    <Card body>
+                                        <Block key={block.hash} block={block} />
+                                    </Card>
+                                    </Col>
+                                </Row>
+                            </Container>
                         );
                     })
                 }
